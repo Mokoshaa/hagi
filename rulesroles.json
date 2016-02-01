@@ -1,0 +1,1413 @@
+{
+	"id": "691b5353-33c6-fd37-e049-523ae29bba70",
+	"name": "roles,task,templates",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"owner": "256902",
+			"lastUpdatedBy": "256902",
+			"lastRevision": 125115728,
+			"id": "a10fcf44-6523-cb3d-9e09-80f592c0c92c",
+			"name": "0 User log in",
+			"description": "",
+			"order": [
+				"608caf2b-583c-fec2-6a06-2fdc301ce469",
+				"f43b1ac6-0845-7bd1-6819-613378247235",
+				"e3507496-322f-0d7c-c9e4-b617ea9adc44",
+				"9e8dd998-c953-c382-2ad6-2cebdac2ec8a",
+				"e801da22-e670-6b50-f2f7-10df67d7590b"
+			],
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70"
+		},
+		{
+			"owner": "256902",
+			"lastUpdatedBy": "256902",
+			"lastRevision": 125115785,
+			"id": "d41e2a3a-60de-27cf-32cf-eb8157041ee2",
+			"name": "1 Roles and Rules",
+			"description": "",
+			"order": [
+				"4e1087c6-a229-48f8-d72d-65cdc748075b",
+				"1eb63b71-d901-2bfa-b451-38ec6bcc1555",
+				"c097b3f7-6a50-6e47-b28f-51c8b6abbec7",
+				"fe91f0c5-6fe1-6ee6-8404-1371967b936a",
+				"020993f7-504d-3494-7ce1-4929626200a6",
+				"b4c9395e-c8e9-c5eb-d83b-d031b68bdefc",
+				"5bd59813-cc3b-95fe-24ea-536bde8b58ad",
+				"198a19b6-0008-6687-e409-3c77124249d1",
+				"4ef2a1cb-4b56-8f77-3240-9ef84c6375dc",
+				"aaef4bd0-3402-6b53-9df9-1a1be50f8b41",
+				"13d8d814-fedb-6523-cf87-a907e0e37ed3",
+				"80bfb8ec-6f38-e9b9-c7ad-daa32626447a",
+				"fc1247fc-8a05-ebf8-2c24-2d2ccea85a39"
+			],
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70"
+		}
+	],
+	"timestamp": 0,
+	"owner": "256902",
+	"remoteLink": null,
+	"public": false,
+	"requests": [
+		{
+			"id": "020993f7-504d-3494-7ce1-4929626200a6",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_role/{{CUSTOME_ROLE_ID}}",
+			"preRequestScript": "var randNum = Math.floor((Math.random() * 100) + 1);\nvar newName = \"New role Name\" + randNum;\n\n\npostman.setEnvironmentVariable(\"NEW_ROLE_NAME\", newName);",
+			"pathVariables": {},
+			"method": "PATCH",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"Role were updated\"] = jsonData.custom_role.description === \"Description text wwere changed by API\";",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454329245194,
+			"name": "Update custom role",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "{\n    \n    \"description\": \"Description text wwere changed by API\"\n\n}"
+		},
+		{
+			"id": "13d8d814-fedb-6523-cf87-a907e0e37ed3",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_rule",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n    tests[\"Task comment create role was created\"] =responseCode.code === 201;\n\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\nvar data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"Custom_role_Task-COM-CR\", data.custom_rule.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454331600902,
+			"name": "Create rule = \"task-comment-create",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "\r\n{\r\n    \"action_type_id\":\"task-comment-create\",\r\n    \"for_admins\":false,\r\n    \"for_new\":false,\r\n    \"for_fired\":false,\r\n    \"or_roles\":[{\r\n        \"id\":\"{{CUSTOME_ROLE_ID}}\"\r\n        \r\n    }]\r\n}"
+		},
+		{
+			"id": "198a19b6-0008-6687-e409-3c77124249d1",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_rule",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n    tests[\"Task update role was created\"] =responseCode.code === 201;\n\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\nvar data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"Custom_role_Task-UP\", data.custom_rule.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454331168744,
+			"name": "Create rule = ask-update",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "\r\n{\r\n    \"action_type_id\":\"task-update\",\r\n    \"for_admins\":false,\r\n    \"for_new\":false,\r\n    \"for_fired\":false,\r\n    \"or_roles\":[{\r\n        \"id\":\"{{CUSTOME_ROLE_ID}}\"\r\n        \r\n    }]\r\n}"
+		},
+		{
+			"id": "1eb63b71-d901-2bfa-b451-38ec6bcc1555",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nAccept: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_roles",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"New role is added\"] = responseBody.has(environment[\"CUSTOME_ROLE_ID\"]);\ntests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454319028748,
+			"name": "1 List all user`s custom roles",
+			"description": "get the list of ONE user custom roles \n\n",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 125115804,
+					"request": "1eb63b71-d901-2bfa-b451-38ec6bcc1555",
+					"id": "1bb4471f-ce91-04ad-5458-ef1969f287be",
+					"name": "User with role",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "1580",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "358",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 16:12:01 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"custom_roles\":[{\"id\":\"aff91569-a4e0-40b1-98f1-3f3504af482e\",\"created\":\"2015-12-23T15:33:29+0000\",\"owner\":{\"id\":\"a1d9bc01-8759-4fef-8310-8e8413e356dd\",\"created\":\"2015-12-23T15:21:19+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"2lrevt+b25jbmnk7tmk0@sharklasers.com\",\"phone\":\"111111111111111\"},\"name\":\"some name\",\"description\":\"some desc\"}]}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/custom_roles\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"Token ZXlKc2IyZHBiaUk2SWpKc2NtVjJkQ3RpTWpWcVltMXVhemQwYldzd1FITm9ZWEpyYkdGelpYSnpMbU52YlNJc0ltbHpjM1ZsWkNJNklqSXdNVFV0TVRJdE1qTWdNVFU2TWpNNk1Ua2lMQ0psZUhCcGNtVnpYMmx1SWpveE9EQXdMQ0pwY0NJNklqUTJMakk0TGpFNU15NHhNVGdpTENKemNHRmpaVjlwWkNJNkltRm1aR1ZqTkRjNUxUQTVNbUl0TkRCbU9DMWlOalZrTFdZM1pXTmxaR1JqWlRKa1pDSjk6MTY4MzE1YTBjYTE3Mjg0NTI5ZTgzMTE5NjA3YjRiOWE1MWNhNGM0ODZmYmVjNTZjYmYyYjZhYzZmNDE3Mzc1ZQ==\",\"name\":\"Authorization\",\"enabled\":true},{\"key\":\"Accept\",\"value\":\"application/json\",\"name\":\"Accept\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"1fe864de-142b-883a-6a78-b50aa3968042\"}],\"data\":\"{\\\"name\\\": \\\"some name\\\", \\\"description\\\": \\\"some desc\\\"}\",\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T16:12:11.000Z",
+					"updatedAt": "2016-01-25T07:19:13.000Z",
+					"write": true
+				},
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 125115809,
+					"request": "1eb63b71-d901-2bfa-b451-38ec6bcc1555",
+					"id": "8800a6f4-b70b-36a8-ecf0-46f79d4cb565",
+					"name": "No role for user without roles",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "523",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "19",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 16:09:29 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"custom_roles\":[]}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/custom_roles\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"Token ZXlKc2IyZHBiaUk2SW5wNFkyRnpaSEYzWlVCdmJIbHdiV0ZzYkM1eWRTSXNJbWx6YzNWbFpDSTZJakl3TVRVdE1USXRNak1nTVRVNk1qWTZNemNpTENKbGVIQnBjbVZ6WDJsdUlqb3hPREF3TENKcGNDSTZJalEyTGpJNExqRTVNeTR4TVRnaUxDSnpjR0ZqWlY5cFpDSTZJakpqWm1VNE5UVTVMV1ZrT1RJdE5EVTRZeTFpWlRZeUxUSm1OVGRpT0dZelpEZzRPU0o5OmU1NDg3NTlmNzc3YzBmN2QwOWJmYTFlZTk1YmVlMDczOGE5NGVjZDAzMTc4NDk2MTIwOTliYjc3MDc1YTliYjU=\",\"name\":\"Authorization\",\"enabled\":true},{\"key\":\"Accept\",\"value\":\"application/json\",\"name\":\"Accept\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"a63b8f99-b779-137f-4d0c-68855c58da91\"}],\"data\":\"{\\\"name\\\": \\\"some name\\\", \\\"description\\\": \\\"some desc\\\"}\",\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T16:10:04.000Z",
+					"updatedAt": "2016-01-25T07:19:13.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"id": "4e1087c6-a229-48f8-d72d-65cdc748075b",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_role",
+			"preRequestScript": "var randome = Math.floor((Math.random() * 100) + 1);\nvar role_name = \"Some role crated by API\" + randome;\n\n\npostman.setEnvironmentVariable(\"Role_name\", role_name);",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\n\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\n\ntests[\"New role creaed\"] = responseCode.code === 201;\n\nvar data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"CUSTOME_ROLE_ID\", data.custom_role.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454320490949,
+			"name": "0 Create new custom role",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 125115791,
+					"request": "4e1087c6-a229-48f8-d72d-65cdc748075b",
+					"id": "36d26a86-64ad-880d-427f-039b241c903d",
+					"name": "Role31",
+					"status": "",
+					"responseCode": {
+						"code": 201,
+						"name": "Created"
+					},
+					"time": "721",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "546",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Mon, 11 Jan 2016 14:54:21 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"custom_role\":{\"id\":\"c9564e12-ed47-4bfb-bed5-34c1f7325757\",\"created\":\"2016-01-11T14:54:21+0000\",\"owner\":{\"id\":\"3bc23fd3-a52c-43e4-889d-ce3d700d7e9d\",\"created\":\"2016-01-11T13:58:27+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"dyartestacc+959@gmail.com\",\"phone\":\"11111111111111\"},\"creator\":{\"id\":\"3bc23fd3-a52c-43e4-889d-ce3d700d7e9d\",\"created\":\"2016-01-11T13:58:27+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"dyartestacc+959@gmail.com\",\"phone\":\"11111111111111\"},\"name\":\"New role31\",\"description\":\"Role new1\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/custom_role\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"Token ZXlKc2IyZHBiaUk2SW1SNVlYSjBaWE4wWVdOakt6azFPVUJuYldGcGJDNWpiMjBpTENKcGMzTjFaV1FpT2lJeU1ERTJMVEF4TFRFeElERTBPalV3T2pNeUlpd2laWGh3YVhKbGMxOXBiaUk2TVRnd01Dd2lhWEFpT2lJNU5DNHlORFF1TVRnM0xqRXlJaXdpYzNCaFkyVmZhV1FpT2lJNU5EVmtaVFJtWlMxbVpqRmlMVFEzWWpRdE9UVXdOaTFrWWpNMFkyRXdaRGRoT0RRaWZRPT06MzZjY2YwNjllODFjMjMyYmI5M2U3YTNkN2Q5OTI3M2I0NDMwNGRhZjRmMDE4ZDg3OWM0NjYwYmE4NjQ3ZThkOA==\",\"name\":\"Authorization\",\"enabled\":true},{\"key\":\"Content-Type\",\"value\":\"application/json\",\"name\":\"Content-Type\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"5cc89b4f-6f78-e04a-ba76-a0688ffcf269\"}],\"data\":\"{\\n    \\\"name\\\": \\\"New role31\\\", \\n    \\\"description\\\": \\\"Role new1\\\"\\n}\",\"method\":\"POST\",\"dataMode\":\"raw\"}",
+					"createdAt": "2016-01-11T14:54:52.000Z",
+					"updatedAt": "2016-01-25T07:19:12.000Z",
+					"write": true
+				},
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 125115794,
+					"request": "4e1087c6-a229-48f8-d72d-65cdc748075b",
+					"id": "d2251ff9-00c9-812e-4200-edee45a31c48",
+					"name": "Role for emplyees",
+					"status": "",
+					"responseCode": {
+						"code": 201,
+						"name": "Created"
+					},
+					"time": "666",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "550",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Mon, 11 Jan 2016 18:21:01 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"custom_role\":{\"id\":\"504b683d-cb3c-4ca4-9046-dd8ce0e20c69\",\"created\":\"2016-01-11T18:21:01+0000\",\"owner\":{\"id\":\"4c993214-3a63-440a-98b5-d525af584196\",\"created\":\"2016-01-11T16:44:26+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"dyartestacc+71@gmail.com\",\"phone\":\"11111111111111\"},\"creator\":{\"id\":\"4c993214-3a63-440a-98b5-d525af584196\",\"created\":\"2016-01-11T16:44:26+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"dyartestacc+71@gmail.com\",\"phone\":\"11111111111111\"},\"name\":\"Role for emplyees\",\"description\":\"Emp role\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/custom_role\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"Token ZXlKc2IyZHBiaUk2SW1SNVlYSjBaWE4wWVdOakt6Y3hRR2R0WVdsc0xtTnZiU0lzSW1semMzVmxaQ0k2SWpJd01UWXRNREV0TVRFZ01UWTZORFk2TlRraUxDSmxlSEJwY21WelgybHVJam94T0RBd0xDSnBjQ0k2SWprMExqSTBOQzR4T0RjdU1USWlMQ0p6Y0dGalpWOXBaQ0k2SWpVNU1EY3pPVEJpTFRNeFpUZ3ROR1l4TmkwNVltSXhMVGMyTlRFMU16WXpZV1pqTUNKOTowZjIxZDA3YWNkMWZhNmY2NTg5NDQzODE2NjNmNTk3ODlmNzY3MGI1ZmJjOGZlNWQ0MGJmMWJiYmU5ZWI3MDFl\",\"name\":\"Authorization\",\"enabled\":true},{\"key\":\"Content-Type\",\"value\":\"application/json\",\"name\":\"Content-Type\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"c751107b-edb0-4628-5694-bee5bc371e26\"}],\"data\":\"{\\n    \\\"name\\\":\\\"Role for emplyees\\\",\\n    \\\"description\\\":\\\"Emp role\\\"\\n}\",\"method\":\"POST\",\"dataMode\":\"raw\"}",
+					"createdAt": "2016-01-11T18:21:11.000Z",
+					"updatedAt": "2016-01-25T07:19:12.000Z",
+					"write": true
+				}
+			],
+			"rawModeData": "{\n    \"name\":\"{{Role_name}}\",\n    \"description\":\"To be, or not to be, that is the question:Whether 'tis Nobler in the mind te,\"\n}"
+		},
+		{
+			"id": "4ef2a1cb-4b56-8f77-3240-9ef84c6375dc",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_rule",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n    tests[\"Task delete role was created\"] =responseCode.code === 201;\n\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\nvar data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"Custom_role_Task-DEL\", data.custom_rule.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454331437064,
+			"name": "Create rule = \"task-delete\"",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "\r\n{\r\n    \"action_type_id\":\"task-delete\",\r\n    \"for_admins\":false,\r\n    \"for_new\":false,\r\n    \"for_fired\":false,\r\n    \"or_roles\":[{\r\n        \"id\":\"{{CUSTOME_ROLE_ID}}\"\r\n        \r\n    }]\r\n}"
+		},
+		{
+			"id": "5bd59813-cc3b-95fe-24ea-536bde8b58ad",
+			"headers": "Accept: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/action_types",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\ntests[\"All action types are listed\"] = responseCode.code !== 404;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454331853206,
+			"name": "All action types",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 125115957,
+					"request": "5bd59813-cc3b-95fe-24ea-536bde8b58ad",
+					"id": "71e99914-6385-0275-3075-30f3e7be8120",
+					"name": "action types",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "540",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 15:06:06 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Transfer-Encoding",
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Accept-Encoding",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "[{\"id\":\"custom_rule-delete\",\"granted_by_default\":false,\"resource_types\":[\"res_custom_rule\"],\"allow_custom_rules\":false},{\"id\":\"custom_rule-update\",\"granted_by_default\":false,\"resource_types\":[\"res_custom_rule\"],\"allow_custom_rules\":false},{\"id\":\"custom_rule-create\",\"granted_by_default\":false,\"resource_types\":[\"res_custom_rule\"],\"allow_custom_rules\":false},{\"id\":\"custom-role-delete\",\"granted_by_default\":false,\"resource_types\":[\"res_custom_role\"],\"allow_custom_rules\":true,\"operation\":\"delete\",\"class\":\"crud\"},{\"id\":\"custom-role-update\",\"granted_by_default\":false,\"resource_types\":[\"res_custom_role\"],\"allow_custom_rules\":true,\"operation\":\"update\",\"class\":\"crud\"},{\"id\":\"emp-custom-role-delete\",\"granted_by_default\":false,\"resource_types\":[\"res_emp_crole\"],\"allow_custom_rules\":false},{\"id\":\"emp-custom-role-create\",\"granted_by_default\":false,\"resource_types\":[\"res_emp_crole\"],\"allow_custom_rules\":false},{\"id\":\"custom-role-create\",\"granted_by_default\":false,\"resource_types\":[\"res_custom_role\"],\"allow_custom_rules\":true,\"operation\":\"create\",\"class\":\"crud\"},{\"id\":\"emp-generate-auth-token\",\"granted_by_default\":false,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"emp-reset-pass\",\"granted_by_default\":true,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"emp-req-activation\",\"granted_by_default\":true,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"emp-init-pass-reset\",\"granted_by_default\":true,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"emp-activation-by-code\",\"granted_by_default\":true,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"client-register\",\"granted_by_default\":false,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"create-org\",\"granted_by_default\":false,\"resource_types\":[\"res_org\"],\"allow_custom_rules\":false},{\"id\":\"create-dep\",\"granted_by_default\":true,\"resource_types\":[\"res_department\"],\"allow_custom_rules\":false},{\"id\":\"create-pos\",\"granted_by_default\":true,\"resource_types\":[\"res_position\"],\"allow_custom_rules\":false},{\"id\":\"create-emp\",\"granted_by_default\":true,\"resource_types\":[\"res_employee\"],\"allow_custom_rules\":false},{\"id\":\"request-confirmation-code\",\"granted_by_default\":true,\"resource_types\":[\"res_confirm_code\"],\"allow_custom_rules\":false}]",
+					"language": "html",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/action_types\",\"headers\":[{\"key\":\"Accept\",\"value\":\"application/json\",\"name\":\"Accept\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"f669a965-ab30-dd3a-1a04-8295e12e79b0\"}],\"data\":[{\"key\":\"code\",\"value\":\"3fded5954f9cac84c9a3838cc03394d7\"}],\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T15:06:22.000Z",
+					"updatedAt": "2016-01-25T07:19:20.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"folder": "a10fcf44-6523-cb3d-9e09-80f592c0c92c",
+			"id": "608caf2b-583c-fec2-6a06-2fdc301ce469",
+			"name": "User login by email and get a token",
+			"dataMode": "urlencoded",
+			"data": [],
+			"rawModeData": null,
+			"descriptionFormat": null,
+			"description": "",
+			"headers": "Authorization: {{ACC_OWN_base64}}\nContent-Type: application/json\n",
+			"method": "POST",
+			"pathVariables": {},
+			"url": "http://api.hagihr.synergetica.net/api/v1/employee/authorization",
+			"preRequestScript": "postman.setEnvironmentVariable(\"ACC_OWNER_LOGIN\", \"dyachenko.synergetica@gmail.com\");\npostman.setEnvironmentVariable(\"ACC_OWNER_PASS\", \"Qwerty123\")\n\nvar email = environment[\"ACC_OWNER_LOGIN\"];\nvar upass = environment[\"ACC_OWNER_PASS\"];\nvar base64 = btoa(email + \":\" + upass);\n\n\npostman.setEnvironmentVariable(\"ACC_OWN_base64\", \"Basic \" + base64);",
+			"tests": "tests[\"API is not 500\"] = responseCode.code !== 500;\ntests[\"User is authorized\"] = responseCode.code !== 401;\n\nvar data = JSON.parse(responseBody);\n\nif (responseCode.code === 202) {\n    tests[\"User is loged and have a token\"] = true;\n    postman.setEnvironmentVariable(\"ACC_OWNER_TOKEN\", (\"Token \" +data.token));\n    postman.setEnvironmentVariable(\"ACC_OWNER_ACC_ID\", data.employee.id);\n}\nelse {\n    tests[\"User is loged and have a token\"] = false;\n}\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 129871099,
+					"request": {
+						"url": "http://api.hagihr.synergetica.net/api/v1/employee/authorization",
+						"headers": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZHlhcnRlc3RhY2MrNTc5QGdtYWlsLmNvbTpTb2Jha2ExOTg3",
+								"name": "Authorization",
+								"enabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"name": "Content-Type",
+								"enabled": true
+							},
+							{
+								"key": "Cache-Control",
+								"name": "Cache-Control",
+								"value": "no-cache"
+							},
+							{
+								"key": "Postman-Token",
+								"name": "Postman-Token",
+								"value": "13086aeb-3836-089e-f75b-2d789d9db3f8"
+							}
+						],
+						"data": [],
+						"method": "POST",
+						"dataMode": "urlencoded"
+					},
+					"id": "0390169a-27f9-ac6d-2707-1e715a1d6071",
+					"name": "token at login",
+					"status": "",
+					"responseCode": {
+						"code": 202,
+						"name": "Accepted"
+					},
+					"time": "1015",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "697",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Tue, 05 Jan 2016 15:12:15 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"token\":\"ZXlKc2IyZHBiaUk2SW1SNVlYSjBaWE4wWVdOakt6VTNPVUJuYldGcGJDNWpiMjBpTENKcGMzTjFaV1FpT2lJeU1ERTJMVEF4TFRBMUlERTFPakV5T2pFMUlpd2laWGh3YVhKbGMxOXBiaUk2TVRnd01Dd2lhWEFpT2lJME5pNHlPQzR4T1RNdU1URTRJaXdpYzNCaFkyVmZhV1FpT2lKaE5HUmpPV1l4TnkwMk1EQTVMVFExWmpBdE9HTXpaQzB3TTJSbE1UYzNNMlV6TnpZaWZRPT06ZmU5ZWNmZjFkNGNiZWRhYjc1M2ZkOGNlYjVjNGU4NjNkMjU0ZTUxY2JiM2I4ZDI5MDM4ODkxYjg4MTQ4ODc1Nw==\",\"employee\":{\"space\":{\"id\":\"a4dc9f17-6009-45f0-8c3d-03de1773e376\",\"created\":\"2016-01-05T14:28:23+0000\",\"title\":\"Orgname2\"},\"id\":\"0b39857c-2a4d-4b5a-939f-a3e1cb993daa\",\"created\":\"2016-01-05T14:28:23+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"dyartestacc+579@gmail.com\",\"phone\":\"11111111111111\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/employee/authorization\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"Basic ZHlhcnRlc3RhY2MrNTc5QGdtYWlsLmNvbTpTb2Jha2ExOTg3\",\"name\":\"Authorization\",\"enabled\":true},{\"key\":\"Content-Type\",\"value\":\"application/json\",\"name\":\"Content-Type\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"13086aeb-3836-089e-f75b-2d789d9db3f8\"}],\"data\":[],\"method\":\"POST\",\"dataMode\":\"urlencoded\"}",
+					"createdAt": "2016-01-29T11:15:49.000Z",
+					"updatedAt": "2016-01-29T11:15:49.000Z",
+					"write": true
+				},
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 129871098,
+					"request": {
+						"url": "http://api.hagihr.synergetica.net/api/v1/employee/authorization",
+						"headers": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZHlhcm8ucy5zaEBnbWFpbC5jb206U29iYWthMTk4Nw==",
+								"name": "Authorization",
+								"enabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"name": "Content-Type",
+								"enabled": true
+							},
+							{
+								"key": "Cache-Control",
+								"name": "Cache-Control",
+								"value": "no-cache"
+							},
+							{
+								"key": "Postman-Token",
+								"name": "Postman-Token",
+								"value": "809109ed-3535-5d81-8211-a3071acaeba6"
+							}
+						],
+						"data": "{\n    \"owner\":\n    {\n        \"first_name\":\"TestUserFirstName\",\n        \"last_name\":\"TestUserLastName\",\n        \"email\": \"dyarossh++++@gmail.com\",\n        \"phone\":\"11111111111111\",\n        \"password\":\"Sobaka1987\"\n    },\n    \"title\":\"Orgname2\",\n    \"country\":\"e1c76226-0bc9-4866-9aa1-8bb57c5293df\"}",
+						"method": "POST",
+						"dataMode": "params"
+					},
+					"id": "aaaa302f-25f3-30e2-6391-5ef83f8bc9da",
+					"name": "user",
+					"status": "",
+					"responseCode": {
+						"code": 202,
+						"name": "Accepted"
+					},
+					"time": "1144",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "690",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Mon, 04 Jan 2016 13:45:41 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"token\":\"ZXlKc2IyZHBiaUk2SW1SNVlYSnZMbk11YzJoQVoyMWhhV3d1WTI5dElpd2lhWE56ZFdWa0lqb2lNakF4Tmkwd01TMHdOQ0F4TXpvME5UbzBNU0lzSW1WNGNHbHlaWE5mYVc0aU9qRTRNREFzSW1sd0lqb2lPVFF1TWpRMExqRTROeTR4TWlJc0luTndZV05sWDJsa0lqb2lNek5sTVRJM1lXTXRaVFl5TXkwMFpHVmxMVGcwTVRFdFpXSmxaak0wTVdJeE9XUmlJbjA9OjI1MmEyYWE4NmM4ZWNkNTA4YzA3YzIwZTIwN2I0NDdjZTViOWU1ZDg2ODVmNTQxN2IxODNmOTgwMzdkMDE3NTk=\",\"employee\":{\"space\":{\"id\":\"33e127ac-e623-4dee-8411-ebef341b19db\",\"created\":\"2016-01-04T11:16:41+0000\",\"title\":\"qqqqqqqqqqqqqqq\"},\"id\":\"281e122b-8456-48eb-b132-3f6b931f4879\",\"created\":\"2016-01-04T11:16:40+0000\",\"first_name\":\"aaaaaaa\",\"last_name\":\"qqqqqqqqqqqqq\",\"email\":\"dyaro.s.sh@gmail.com\",\"phone\":\"11111111111111\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"url\":\"http://api.hagihr.synergetica.net/api/v1/employee/authorization\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"Basic ZHlhcm8ucy5zaEBnbWFpbC5jb206U29iYWthMTk4Nw==\",\"name\":\"Authorization\",\"enabled\":true},{\"key\":\"Content-Type\",\"value\":\"application/json\",\"name\":\"Content-Type\",\"enabled\":true},{\"key\":\"Cache-Control\",\"name\":\"Cache-Control\",\"value\":\"no-cache\"},{\"key\":\"Postman-Token\",\"name\":\"Postman-Token\",\"value\":\"809109ed-3535-5d81-8211-a3071acaeba6\"}],\"data\":\"{\\n    \\\"owner\\\":\\n    {\\n        \\\"first_name\\\":\\\"TestUserFirstName\\\",\\n        \\\"last_name\\\":\\\"TestUserLastName\\\",\\n        \\\"email\\\": \\\"dyarossh++++@gmail.com\\\",\\n        \\\"phone\\\":\\\"11111111111111\\\",\\n        \\\"password\\\":\\\"Sobaka1987\\\"\\n    },\\n    \\\"title\\\":\\\"Orgname2\\\",\\n    \\\"country\\\":\\\"e1c76226-0bc9-4866-9aa1-8bb57c5293df\\\"}\",\"method\":\"POST\",\"dataMode\":\"params\"}",
+					"createdAt": "2016-01-04T13:46:10.000Z",
+					"updatedAt": "2016-01-29T11:15:49.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"id": "80bfb8ec-6f38-e9b9-c7ad-daa32626447a",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_rule",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n    tests[\"Task status update role was created\"] =responseCode.code === 201;\n\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\nvar data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"Custom_role_Task-Stat-UP\", data.custom_rule.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454331682364,
+			"name": "Create rule = task status update",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "\r\n{\r\n    \"action_type_id\":\"task-status-update\",\r\n    \"for_admins\":false,\r\n    \"for_new\":false,\r\n    \"for_fired\":false,\r\n    \"or_roles\":[{\r\n        \"id\":\"{{CUSTOME_ROLE_ID}}\"\r\n        \r\n    }]\r\n}"
+		},
+		{
+			"id": "9e8dd998-c953-c382-2ad6-2cebdac2ec8a",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\nAccept: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/employee/{{ACC_OWNER_ACC_ID}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\ntests[\"Find all employees\"] = responseBody.has(environment[\"ACC_OWNER_ACC_ID\"])\n;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454312543907,
+			"name": "Get one employee data",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 129889907,
+					"request": {
+						"data": null,
+						"method": "GET",
+						"dataMode": "params"
+					},
+					"id": "26a80475-161f-515e-73b1-09a3bb74e41e",
+					"name": "User info by Token",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "622",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "198",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 14:54:51 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"employee\":{\"id\":\"a3e67f55-1af8-40e7-a5fa-dfac49923f26\",\"created\":\"2015-12-23T14:00:24+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"frichida@dodsi.com\",\"phone\":\"111111111111111\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"data\":null,\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T15:06:54.000Z",
+					"updatedAt": "2016-01-29T11:34:36.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"id": "aaef4bd0-3402-6b53-9df9-1a1be50f8b41",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_rule",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n    tests[\"Task create role was created\"] =responseCode.code === 201;\n\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\nvar data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"Custom_role_Task-CR\", data.custom_rule.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454331444957,
+			"name": "Create rule = \"task-create role",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "\r\n{\r\n    \"action_type_id\":\"task-create\",\r\n    \"for_admins\":false,\r\n    \"for_new\":false,\r\n    \"for_fired\":false,\r\n    \"or_roles\":[{\r\n        \"id\":\"{{CUSTOME_ROLE_ID}}\"\r\n        \r\n    }]\r\n}"
+		},
+		{
+			"id": "b4c9395e-c8e9-c5eb-d83b-d031b68bdefc",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_role/{{CUSTOME_ROLE_ID}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\ntests[\"Role deleted\"] = responseCode.code !== 204;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454320195809,
+			"name": "Delete custom role",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70"
+		},
+		{
+			"id": "c097b3f7-6a50-6e47-b28f-51c8b6abbec7",
+			"headers": "Authorization: {{TOKEN}}\nAccept: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_role/{{CUSTOME_ROLE_ID}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"New role is added\"] = responseBody.has(environment[\"CUSTOME_ROLE_ID\"]);\ntests[\"API is OK\"] = responseCode.code !== 500;\nif (responseCode.code !== 401) {\n    tests[\"User is authorized\"] = true;\n}\nelse {\n        tests[\"User is authorized\"] = false;\n}\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454319083553,
+			"name": "View specif cust role",
+			"description": "GET info specific custome role {{CUSTOME_ROLE_ID}}",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": []
+		},
+		{
+			"id": "e3507496-322f-0d7c-c9e4-b617ea9adc44",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\nAccept: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/employees",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"Find all employees\"] = responseBody.has(\"68eef78b-0631-4929-8492-1d65f112dd38\" || \"462627b0-9cab-49a9-8c7e-c0480b3be4ab\" && \"68eef78b-0631-4929-8492-1d65f112dd38\");\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454312317417,
+			"name": "Get all employee's",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 129889907,
+					"request": {
+						"data": null,
+						"method": "GET",
+						"dataMode": "params"
+					},
+					"id": "035902d7-1db7-0105-f989-ccc6b0e8f19c",
+					"name": "User info by Token",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "622",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "198",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 14:54:51 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"employee\":{\"id\":\"a3e67f55-1af8-40e7-a5fa-dfac49923f26\",\"created\":\"2015-12-23T14:00:24+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"frichida@dodsi.com\",\"phone\":\"111111111111111\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"data\":null,\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T15:06:54.000Z",
+					"updatedAt": "2016-01-29T11:34:36.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"id": "e801da22-e670-6b50-f2f7-10df67d7590b",
+			"headers": "Authorization: Token ZXlKc2IyZHBiaUk2SW1Gc2FXSmhZbUZBZG10amIyUmxMbkoxSWl3aWFYTnpkV1ZrSWpvaU1qQXhOaTB3TWkwd01TQXdOem8wTnpvd055SXNJbVY0Y0dseVpYTmZhVzRpT2pFNE1EQXNJbWx3SWpvaU9UUXVNalEwTGpFNE55NHhNaUlzSW5Od1lXTmxYMmxrSWpvaU1HRmxOak16T1dFdFpXRmhOUzAwWm1JMExUZzVaV1V0WVdSaFkyUmtPREZsWTJJNUluMD06Y2NkYzcwYjA1ZTI5YmNkYTcwMmJjZTIyZDFkMDk1NjAzY2Y3NmJlYTZjNDIwMjI4NGEwYWQ0NzEzMzA0MDdkMQ\nContent-Type: application/json\nAccept: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/employee/{{ACC_OWNER_ACC_ID}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "if (responseCode.code !== 200) {\n    tests[\"User info protected from other org\"] = true;\n}\nelse {\n    tests[\"User info protected from other org\"] = false;\n}\ntests[\"Responsse code is 500\"] = responseCode.code === 500;\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454313287161,
+			"name": "Get one employee data copy",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 129889907,
+					"request": {
+						"data": null,
+						"method": "GET",
+						"dataMode": "params"
+					},
+					"id": "e6e2d99b-961a-d3d2-53f0-9434263d8dc9",
+					"name": "User info by Token",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "622",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "198",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 14:54:51 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"employee\":{\"id\":\"a3e67f55-1af8-40e7-a5fa-dfac49923f26\",\"created\":\"2015-12-23T14:00:24+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"frichida@dodsi.com\",\"phone\":\"111111111111111\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"data\":null,\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T15:06:54.000Z",
+					"updatedAt": "2016-01-29T11:34:36.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"id": "f43b1ac6-0845-7bd1-6819-613378247235",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/employee",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\nvar data = JSON.parse(responseBody);\n\ntests[\"Find emplyee by ID\"] = data.employee.id === environment[\"ACC_OWNER_ACC_ID\"];",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454311847049,
+			"name": "Get employee's data",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"responses": [
+				{
+					"owner": "256902",
+					"lastUpdatedBy": "256902",
+					"lastRevision": 129889907,
+					"request": {
+						"data": null,
+						"method": "GET",
+						"dataMode": "params"
+					},
+					"id": "c99d5152-ffe1-6f0d-1ff6-58aa610e579b",
+					"name": "User info by Token",
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": "622",
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-cache",
+							"description": ""
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": ""
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "198",
+							"description": ""
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 23 Dec 2015 14:54:51 GMT",
+							"description": ""
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=15, max=100",
+							"description": ""
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": ""
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Authorization",
+							"description": ""
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/5.5.28-pl0-gentoo",
+							"description": ""
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"employee\":{\"id\":\"a3e67f55-1af8-40e7-a5fa-dfac49923f26\",\"created\":\"2015-12-23T14:00:24+0000\",\"first_name\":\"Kventine\",\"last_name\":\"Tarantino\",\"email\":\"frichida@dodsi.com\",\"phone\":\"111111111111111\"}}",
+					"language": "javascript",
+					"rawDataType": "text",
+					"state": {
+						"size": "normal"
+					},
+					"previewType": "html",
+					"searchResultScrolledTo": "-1",
+					"version": null,
+					"requestObject": "{\"data\":null,\"method\":\"GET\",\"dataMode\":\"params\"}",
+					"createdAt": "2015-12-23T15:06:54.000Z",
+					"updatedAt": "2016-01-29T11:34:36.000Z",
+					"write": true
+				}
+			]
+		},
+		{
+			"id": "fc1247fc-8a05-ebf8-2c24-2d2ccea85a39",
+			"headers": "Authorization: {{ACC_OWNER_TOKEN}}\nContent-Type: application/json\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/employee/{{ACC_OWNER_ACC_ID}}/custom_role/{{CUSTOME_ROLE_ID}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\n\nif (responseCode.code === 400) {\n    var jdata = JSON.parse(responseBody);\n    tests[\"custom role relation already exists\"] = responseBody.has(\"error.employee_custom_role_relation.already_exists\");\n}\nelse {\n    if (responseCode.code !== (401 && 400 && 500)) {\n        tests[\"User is authorized\"] = true;\n        tests[\"Role added to user\"] =responseCode.code === 204;\n    }\n    else {\n    tests[\"User is authorized\"] = false;\n    }\n}",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454333758288,
+			"name": "Add user to role",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70",
+			"rawModeData": "{\n    \"employee\":\"ACC_OWNER_ACC_ID\",\n    \"role\":\"CUSTOME_ROLE_ID\"\n}"
+		},
+		{
+			"id": "fe91f0c5-6fe1-6ee6-8404-1371967b936a",
+			"headers": "Authorization: Token ZXlKc2IyZHBiaUk2SW1SNVlYSnZjM05vUUdkdFlXbHNMbU52YlNJc0ltbHpjM1ZsWkNJNklqSXdNVFl0TURFdE1URWdNVGM2TXpBNk1ETWlMQ0psZUhCcGNtVnpYMmx1SWpveE9EQXdMQ0pwY0NJNklqazBMakkwTkM0eE9EY3VNVElpTENKemNHRmpaVjlwWkNJNklqVmhNV1U0WXpNeUxXUTRPRFF0TkRNd01pMDRNbVpqTFRVMVpUQTJORFZpTTJFd1pTSjk6YWNkMTBlOWU4NGJjM2Q3ZjA3MjM4ODE2MTUwNTM1M2Y3ZGU3MzkwMTVhMzE3MjkyMjY3MTAzNDQ3YjRiYjRkMA==\n",
+			"url": "http://api.hagihr.synergetica.net/api/v1/custom_role/{{CUSTOME_ROLE_ID}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"API is OK\"] = responseCode.code !== 500;\ntests[\"Status code is Not 200\"] = responseCode.code != 200;\ntests[\"Role info protected from others\"] = responseCode.code === 500 || 404;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1454319316754,
+			"name": "NEGATIVE View role  by other user",
+			"description": "",
+			"collectionId": "691b5353-33c6-fd37-e049-523ae29bba70"
+		}
+	]
+}

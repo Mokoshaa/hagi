@@ -1,0 +1,100 @@
+{
+	"id": "0b0bf507-4210-74ad-8e87-59b7436fdac5",
+	"name": "Jenkins",
+	"values": [
+		{
+			"key": "ACC_OWN_base64",
+			"value": "Basic ZHlhY2hlbmtvLnN5bmVyZ2V0aWNhQGdtYWlsLmNvbTpRd2VydHkxMjM=",
+			"type": "text",
+			"name": "ACC_OWN_base64",
+			"enabled": true
+		},
+		{
+			"key": "ACC_OWNER_LOGIN",
+			"value": "dyachenko.synergetica@gmail.com",
+			"type": "text",
+			"name": "ACC_OWNER_LOGIN",
+			"enabled": true
+		},
+		{
+			"key": "ACC_OWNER_PASS",
+			"value": "Qwerty123",
+			"type": "text",
+			"name": "ACC_OWNER_PASS",
+			"enabled": true
+		},
+		{
+			"key": "ACC_OWNER_TOKEN",
+			"value": "Token ZXlKc2IyZHBiaUk2SW1SNVlXTm9aVzVyYnk1emVXNWxjbWRsZEdsallVQm5iV0ZwYkM1amIyMGlMQ0pwYzNOMVpXUWlPaUl5TURFMkxUQXlMVEF4SURFeU9qRTRPakUySWl3aVpYaHdhWEpsYzE5cGJpSTZNVGd3TUN3aWFYQWlPaUk1TkM0eU5EUXVNVGczTGpFeUlpd2ljM0JoWTJWZmFXUWlPaUk0TURabU9XRmxPUzB4TVRCakxUUTBPRGd0WVRNNVl5MHlabU0zWkRCbE5UZGtPVGNpZlE9PTpkMTRkMmFjODQ3NzgwNTY1NmRiMGQ1MWU2YTNmMDI5Y2FlNWJlMjM4MjlmOGJkMDY3NzUzZTc2ZmNjZWI2NTg3",
+			"type": "text",
+			"name": "ACC_OWNER_TOKEN",
+			"enabled": true
+		},
+		{
+			"key": "ACC_OWNER_ACC_ID",
+			"value": "68eef78b-0631-4929-8492-1d65f112dd38",
+			"type": "text",
+			"name": "ACC_OWNER_ACC_ID",
+			"enabled": true
+		},
+		{
+			"key": "CUSTOME_ROLE_ID",
+			"value": "807c9cfd-1a09-4079-a2d3-f66eb0c078b3",
+			"type": "text",
+			"name": "CUSTOME_ROLE_ID",
+			"enabled": true
+		},
+		{
+			"key": "Role_name",
+			"value": "Some role crated by API73",
+			"type": "text",
+			"name": "Role_name",
+			"enabled": true
+		},
+		{
+			"key": "NEW_ROLE_NAME",
+			"value": "New role Name30",
+			"type": "text",
+			"name": "NEW_ROLE_NAME",
+			"enabled": true
+		},
+		{
+			"key": "Custom_role_Task-UP",
+			"value": "eead6e5a-7234-4697-9c34-4be91667149c",
+			"type": "text",
+			"name": "Custom_role_Task-UP",
+			"enabled": true
+		},
+		{
+			"key": "Custom_role_Task-DEL",
+			"value": "0a174bca-a794-4aec-9cbe-9e7dac8b0f7d",
+			"type": "text",
+			"name": "Custom_role_Task-DEL",
+			"enabled": true
+		},
+		{
+			"key": "Custom_role_Task-CR",
+			"value": "4fea8744-2673-4d9c-811c-f77f34fba0ef",
+			"type": "text",
+			"name": "Custom_role_Task-CR",
+			"enabled": true
+		},
+		{
+			"key": "Custom_role_Task-COM-CR",
+			"value": "5b160acb-71dc-4f04-a525-343b2d842b70",
+			"type": "text",
+			"name": "Custom_role_Task-COM-CR",
+			"enabled": true
+		},
+		{
+			"key": "Custom_role_Task-Stat-UP",
+			"value": "f314f4c3-d011-4040-84c2-5e18faa1db83",
+			"type": "text",
+			"name": "Custom_role_Task-Stat-UP",
+			"enabled": true
+		}
+	],
+	"timestamp": 1454336278042,
+	"synced": false,
+	"syncedFilename": ""
+}
